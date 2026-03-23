@@ -21,7 +21,7 @@ spring:
     password: sample1!@#$%
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-only
     show-sql: true
     properties:
       hibernate:

@@ -25,13 +25,11 @@ public class Order {
 
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "order_line", joinColumns = @JoinColumn(name = "order_id", comment = "주문ID")) // 밸류를 저장할 테이블 지정
+    @CollectionTable(name = "tb_order_line", joinColumns = @JoinColumn(name = "order_id", comment = "주문ID")) // 밸류를 저장할 테이블 지정
     @OrderColumn(name = "line_seq", columnDefinition = "INT COMMENT '주문 항목 순서'")
     private List<OrderLine> orderLines;
 
-    protected Order() {
-
-    }
+    protected Order() {}
 
     /*
     팩토리 메서드
@@ -40,10 +38,11 @@ public class Order {
     3. 불완전한 객체 생성 방지
     4. 반환 타입의 유연성
      */
-    public static Order create(ShippingInfo shippingInfo) {
+    public static Order create(ShippingInfo shippingInfo, List<OrderLine> orderLines) {
         Order order = new Order();
         order.orderState = OrderState.PAYMENT_WAITING;
         order.shippingInfo = shippingInfo;
+        order.orderLines = orderLines;
         return order;
     }
 

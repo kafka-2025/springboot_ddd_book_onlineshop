@@ -1,0 +1,35 @@
+### 주문 생성
+POST http://localhost:8080/order
+Content-Type: application/json
+
+{
+  "shippingInfo": {
+    "receiver": {
+      "name": "홍길동",
+      "phone": "010-1234-5678"
+    },
+    "address": {
+      "zipCode": "06234",
+      "address1": "서울시 강남구 테헤란로 123",
+      "address2": "101호"
+    }
+  },
+  "orderLines": [
+    {
+      "productId": 1,
+      "price": {
+        "price": 15000,
+        "currency": "KRW"
+      },
+      "quantity": 2
+    },
+    {
+      "productId": 3,
+      "price": {
+        "price": 32000,
+        "currency": "KRW"
+      },
+      "quantity": 1
+    }
+  ]
+}
