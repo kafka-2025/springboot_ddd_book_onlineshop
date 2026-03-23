@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: demo
+
+# 콘솔 로그 출력 패턴 설정 (메서드, 클래스명, 라인번호 포함)
+logging:
+  level:
+    root: INFO
+    com.mokabanana.onlineshop: INFO
+  pattern:
+    console: "%d{yyyyMMdd HH:mm:ss.SSS} [%thread] %green(%-3level) %blue(%logger{30}.%M:%line) - %msg%n"
+
+# ===============
+# local 환경 설정
+# ===============
+---
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sample_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    username: sample_admin
+    password: sample1!@#$%
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
