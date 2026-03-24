@@ -11,7 +11,11 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(comment = "주문ID")
+    private Long id;  // 시스템 내부용, 외부에 노출 안 함
+
+    @Embedded
+    private OrderNo orderNo;
 
     @Enumerated(EnumType.STRING)
     private OrderState orderState;
@@ -25,11 +29,13 @@ public class Order {
 
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "tb_order_line", joinColumns = @JoinColumn(name = "order_id", comment = "주문ID")) // 밸류를 저장할 테이블 지정
+    @CollectionTable(name = "tb_order_line", joinColumns = @JoinColumn(name = "order_id", comment = "주문ID"))
+    // 밸류를 저장할 테이블 지정
     @OrderColumn(name = "line_seq", columnDefinition = "INT COMMENT '주문 항목 순서'")
     private List<OrderLine> orderLines;
 
-    protected Order() {}
+    protected Order() {
+    }
 
     /*
     팩토리 메서드
@@ -40,6 +46,7 @@ public class Order {
      */
     public static Order create(ShippingInfo shippingInfo, List<OrderLine> orderLines) {
         Order order = new Order();
+        order.orderNo = OrderNo.generate();
         order.orderState = OrderState.PAYMENT_WAITING;
         order.shippingInfo = shippingInfo;
         order.orderLines = orderLines;
@@ -53,24 +60,4 @@ public class Order {
     public ShippingInfo getShippingInfo() {
         return shippingInfo;
     }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (obj.getClass() != Order.class) return false;
-        Order other = (Order) obj;
-        if (this.id == null) return false;
-        return this.id.equals(other.id);
-    }
-
-
 }
