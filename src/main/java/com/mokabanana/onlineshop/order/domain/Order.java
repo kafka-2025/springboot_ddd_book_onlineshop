@@ -53,11 +53,19 @@ public class Order {
         return order;
     }
 
+    public OrderNo getOrderNo() {
+        return orderNo;
+    }
+
     public OrderState getOrderState() {
         return orderState;
     }
 
     public ShippingInfo getShippingInfo() {
         return shippingInfo;
+    }
+
+    public List<OrderLine> getOrderLines() {
+        return orderLines;
     }
 }

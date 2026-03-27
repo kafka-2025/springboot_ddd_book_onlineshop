@@ -34,4 +34,20 @@ public class OrderLine {
         this.quantity = quantity;
         this.amount = price.multiply(quantity);
     }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public Money getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Money getAmount() {
+        return amount;
+    }
 }
