@@ -10,9 +10,9 @@ import org.springframework.data.repository.Repository;
 public interface ProductQueryDao extends Repository<Product, Long> {
 
     @Query("""
-        select new com.mokabanana.onlineshop.product.query.dto.ProductQueryResponse
-             (p)
-             from Product p
-    """)
+                select new com.mokabanana.onlineshop.product.query.dto.ProductQueryResponse
+                     (p.id, p.productCode, p.name, p.price, p.stockQuantity)
+                     from Product p
+            """)
     Page<ProductQueryResponse> findAll(Pageable pageable);
 }

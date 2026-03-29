@@ -1,6 +1,7 @@
 package com.mokabanana.onlineshop.product.query.dto;
 
-import com.mokabanana.onlineshop.product.command.domain.Product;
+import com.mokabanana.onlineshop.common.domain.Money;
+import com.mokabanana.onlineshop.product.command.domain.ProductCode;
 
 public record ProductQueryResponse(
         Long id,
@@ -9,13 +10,7 @@ public record ProductQueryResponse(
         long price,
         int stockQuantity
 ) {
-    public ProductQueryResponse (Product product) {
-        this(
-                product.getId(),
-                product.getProductCode().code(),
-                product.getName(),
-                product.getPrice().price().longValue(),
-                product.getStockQuantity()
-        );
+    public ProductQueryResponse(Long id, ProductCode productCode, String name, Money price, int stockQuantity) {
+        this(id, productCode.code(), name, price.price().longValue(), stockQuantity);
     }
 }
