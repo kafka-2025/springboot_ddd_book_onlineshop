@@ -1,18 +1,26 @@
 package com.mokabanana.onlineshop.admin.dto;
 
-import com.mokabanana.onlineshop.order.domain.Order;
+import com.mokabanana.onlineshop.order.domain.OrderNo;
+import com.mokabanana.onlineshop.order.domain.OrderState;
 import com.mokabanana.onlineshop.order.domain.ShippingInfo;
 
 public record OrderListResponse(
         String orderNo,
         String orderState,
-        ShippingInfo shippingInfo
-        ) {
-    public static OrderListResponse from(Order order) {
-        return new OrderListResponse(
-                order.getOrderNo().number(),
-                order.getOrderState().name(),
-                order.getShippingInfo()
+        String receiver_name,
+        String receiver_phone,
+        String zipCode,
+        String address1,
+        String address2
+) {
+    public OrderListResponse(OrderNo orderNo, OrderState orderState, ShippingInfo shippingInfo) {
+        this(orderNo.number(),
+                orderState.name(),
+                shippingInfo.receiver().name(),
+                shippingInfo.receiver().phone(),
+                shippingInfo.address().zipCode(),
+                shippingInfo.address().address1(),
+                shippingInfo.address().address2()
         );
     }
 }

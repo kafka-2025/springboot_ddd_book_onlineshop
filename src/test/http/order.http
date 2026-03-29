@@ -69,3 +69,33 @@ Content-Type: application/json
     }
   ]
 }
+
+
+
+### 주문 생성2
+POST http://localhost:8080/order
+Content-Type: application/json
+
+{
+  "shippingInfo": {
+    "receiver": {
+      "name": "희동이",
+      "phone": "010-1111-3333"
+    },
+    "address": {
+      "zipCode": "06234",
+      "address1": "서울시 구로구 구로동 333",
+      "address2": "101동 1101호"
+    }
+  },
+  "orderLines": [
+    {
+      "productId": 1,
+      "price": {
+        "price": 15000,
+        "currency": "KRW"
+      },
+      "quantity": 1
+    }
+  ]
+}
