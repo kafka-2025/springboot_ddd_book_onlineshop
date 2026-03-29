@@ -32,6 +32,10 @@ public class Product {
         return product;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public ProductCode getProductCode() {
         return productCode;
     }
