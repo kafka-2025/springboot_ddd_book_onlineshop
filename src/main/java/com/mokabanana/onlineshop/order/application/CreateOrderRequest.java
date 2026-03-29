@@ -5,5 +5,8 @@ import com.mokabanana.onlineshop.order.domain.ShippingInfo;
 
 import java.util.List;
 
-public record CreateOrderRequest(ShippingInfo shippingInfo, List<OrderLine> orderLines) {
+public record CreateOrderRequest(
+        ShippingInfo shippingInfo,
+        List<OrderLine> orderLines)
+{
 }

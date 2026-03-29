@@ -1,0 +1,21 @@
+### 상품 추가
+POST http://localhost:8080/product
+Content-Type: application/json
+
+[
+    {
+      "name": "크라운 산도",
+      "price": 1000,
+      "stockQuantity": 2
+    },
+    {
+    "name": "고소한 구운아몬드",
+    "price": 9900,
+    "stockQuantity": 50
+    },
+    {
+    "name": "신라면",
+    "price": 1100,
+    "stockQuantity": 1
+    }
+]
